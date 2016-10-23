@@ -21,7 +21,7 @@ def get_lines(ht_map, n_lines, thetas, rhos, min_delta_rho, min_delta_theta):
 
 
 if __name__ == '__main__':
-    assert len(argv) == 3
+    assert len(argv) == 9
     src_path, dst_ht_path, dst_lines_path, theta, rho,\
         n_lines, min_delta_rho, min_delta_theta = argv[1:]
 
@@ -44,7 +44,7 @@ if __name__ == '__main__':
     gradient = gradient_img(image)
 
     ht_map, thetas, rhos = hough_transform(gradient, theta, rho)
-    cv2.imwrite(ht_map, dst_ht_path)
+    cv2.imwrite(dst_ht_path, ht_map)
 
     lines = get_lines(ht_map, thetas, rhos, n_lines, min_delta_rho, min_delta_theta)
     with open(dst_lines_path, 'w') as fout:
